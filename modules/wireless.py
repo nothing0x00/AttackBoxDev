@@ -32,7 +32,7 @@ def wireless():
     print("[!] Note: In order to copy the SSH key to the Public Server, the User on the Public Server Needs to Have Password Authentication Enabled Over SSH.")
     print("\n")
     server = input("Server IP or URL: ")
-    rev_port = input("Select Port on Public Server for Port Forwarding to On-Site Machine: ")
+    rev_port = input("Select Port on Public Server for Port Forwarding to Onsite Machine: ")
 
     #ssh-copy-id
     print("[*] Copying SSH Key to Remote Machine")
