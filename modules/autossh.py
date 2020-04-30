@@ -1,22 +1,16 @@
 import subprocess
-import os,sys
+import sys,os
 
-def internalwireless():
+def autossh():
     #Install packages
-    print("[*] Installing Dependencies and Packages!")
+    print("[*] Installing Autossh Dependencies and Packages!")
     print("\n")
     subprocess.call("apt update", shell=True)
     subprocess.call("apt upgrade -y", shell=True)
-    subprocess.call("apt install kali-tools-802-11 kali-tools-database kali-tools-headless kali-tools-information-gathering kali-tools-passwords kali-tools-post-exploitation kali-tools-wireless -y", shell=True)
     subprocess.call("apt install autossh python3-pip bettercap ssh -y", shell=True)
     subprocess.call("systemctl enable ssh", shell=True)
     subprocess.call("systemctl start ssh", shell=True)
-    subprocess.call("git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git", shell=True)
-    subprocess.call("chmod +x airgeddon/airgeddon.sh", shell=True)
-    subprocess.call("git clone https://github.com/derv82/wifite2.git", shell=True)
-    subprocess.call("git clone https://github.com/s0lst1c3/eaphammer.git", shell=True)
-    subprocess.call("./eaphammer/kali-setup", shell=True)
-
+    
     print("\n")
     #Checking for SSH keys and generating them if they do not exist
     print("[*] Checking for Existing SSH Keys...")
@@ -27,7 +21,7 @@ def internalwireless():
         subprocess.call("ssh-keygen", shell=True)
     print("\n")
 
-    #Set up reverse SSH with authssh
+    #Set up reverse SSH with autossh
     print("[*] Setting Up Connection Information")
     print("[!] Note: In order to copy the SSH key to the Public Server, the User on the Public Server Needs to Have Password Authentication Enabled Over SSH.")
     print("\n")
@@ -76,5 +70,5 @@ def internalwireless():
     subprocess.call(cmd, shell=True)
     print("\n")
     print("\n")
-    print("[*] Installation Complete")
+    print("[*] Autossh Installation Complete")
     print("Please Reboot Machine to Check Connection Autolaunch on Boot")
