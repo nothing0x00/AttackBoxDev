@@ -7,7 +7,7 @@ def wireless():
     print("\n")
     subprocess.call("apt update", shell=True)
     subprocess.call("apt upgrade -y", shell=True)
-    subprocess.call("apt install kali-tools-802-11 kali-tools-headless kali-tools-passwords kali-tools-wireless -y", shell=True)        
+    subprocess.call("apt install kali-tools-802-11 kali-tools-headless kali-tools-passwords kali-tools-wireless hcxdumptool hcxtools -y", shell=True)        
     subprocess.call("git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git", shell=True)
     subprocess.call("chmod +x airgeddon/airgeddon.sh", shell=True)
     subprocess.call("git clone https://github.com/derv82/wifite2.git", shell=True)
@@ -16,5 +16,5 @@ def wireless():
 
     print("\n")
 
-    
+
     print("[*] Installation Complete")
