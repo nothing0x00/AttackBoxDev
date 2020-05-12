@@ -38,6 +38,10 @@ def server():
         subprocess.call("touch /var/www/html/commands.txt")
         print("Edit /var/ww/html/commands.txt To Send Commands to the Onsite Device")
         print("\n")
+        print("Setting Dummy Homepage for Webserver")
+        subprocess.call("rm /var/www/html/index.html", shell=True)
+        subprocess.call("mv scripts/index.html /var/www/html", shell=True)
+        print("\n")
         #Setting Root Password and SSH keys
         print("[*] Setting Up root Password, SSH Directory and SSH Keys")
         print("\n")

@@ -2,7 +2,7 @@ import os
 import subprocess
 
 #set httpc2.py to run on boot
-def httpc2_install():
+def httpc2():
     print("\n")
     print("[*] Setting up HTTP Command Polling")
     print("\n")
@@ -11,6 +11,7 @@ def httpc2_install():
     print("\n")
     print("[*] Setting up HTTP command polling to run on boot")
     print("Make sure to edit the /bin/httpc2/httpc2.py to insert the proper URL into the r parameter")
+    cntnue = input("Press ENTER once URL has been modified in httpc2.py")
     print("\n")
     subprocess.call("mkdir /bin/httpc2", shell=True)
     subprocess.call("mv scripts/httpc2.py /bin/httpc2/", shell=True)

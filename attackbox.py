@@ -47,11 +47,4 @@ if args.autossh:
 if args.vnc:
     vnc.vnc()
 if args.c2:
-    httpc2_setup.httpc2_install()
-
-
-## TODO:
-# Install additional requested software
-# Polling webserver Functionality
-# automate SSH configuration
-# RPi module
+    httpc2_setup.httpc2()
