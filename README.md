@@ -10,10 +10,5 @@ This version will involve the following improvements:
 
 
 #### To Do
-- Update README with new options structure
-- Update README with script usage and VNC forwarding information
-- RPi module
-- Webserver command polling script
-
-# For RPi 4 Kali image, make sure to note that the user needs to burn the image then go into /boot/config.txt and uncomment hdmi_force_hotplug=1
-# Next: Webpage C2
+- Allow for interactive setting of URL for httpc2 script
+- Update README
