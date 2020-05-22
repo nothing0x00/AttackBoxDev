@@ -1,6 +1,6 @@
 import subprocess
 import sys,os
-import modules.public as public
+import modules.publicserver as public
 import modules.internal_pentest as internal
 import modules.wireless as wireless
 import modules.autossh as autossh
