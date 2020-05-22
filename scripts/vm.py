@@ -1,10 +1,38 @@
-#Standalone script to install and configure virtual machine images to connect to reverse ssh
-
-pre-generate the keys and pre-transfer them to the public Server
-add code to install tooling from internal_pentest
 import subprocess
 import sys,os
 
+print('''
+
+   ___         ________                 ____                 _ __
+  / _ \___ ___/ /_  __/__ ___ ___ _    / __/__ ______ ______(_) /___ __
+ / , _/ -_) _  / / / / -_) _ `/  ' \  _\ \/ -_) __/ // / __/ / __/ // /
+/_/|_|\__/\_,_/ /_/  \__/\_,_/_/_/_/ /___/\__/\__/\_,_/_/ /_/\__/\_, /
+                                                                /___/
+
+Internal Pentest and Remote Wireless Testing Dropbox Installation Script
+''')
+
+print("[*] Internal Penetration Test VM Configuration Script")
+print("[*] Before Continuing Generate SSH Keys and Transfer Public Key to Public Server")
+keys = input("Press ENTER when SSH Keys Have Been Transfered to Public Server")
+print("\n")
+print("[*] Installing and Configuring System")
+print("\n")
+print("[*] Installing Dependencies and Packages!")
+print("\n")
+subprocess.call("apt update", shell=True)
+subprocess.call("apt upgrade -y", shell=True)
+subprocess.call("apt install kali-tools-database kali-tools-headless kali-tools-information-gathering kali-tools-passwords kali-tools-post-exploitation -y", shell=True)
+print("[*] Installing Source Files for CrackMapExec, Responder, MITM6 and Impacket and Installing Dependencies")
+subprocess.call("git clone https://github.com/SecureAuthCorp/impacket.git", shell=True)
+subprocess.call("git clone https://github.com/fox-it/mitm6.git", shell=True)
+subprocess.call("pip3 install -r mitm6/requirements.txt", shell=True)
+subprocess.call("git clone https://github.com/lgandx/Responder.git", shell=True)
+subprocess.call("apt install libssl-dev libffi-dev python-dev build-essential -y", shell=True)
+subprocess.call("git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec", shell=True)
+subprocess.call("apt remove crackmapexec", shell=True)
+subprocess.call("python3 CrackMapExec/setup.py install", shell=True)
+print("\n")
 
 print("[*] Installing Autossh Dependencies and Packages!")
 print("\n")
