@@ -29,7 +29,7 @@ print("\n")
 
 #argument structure
 
-parser = argparse.ArgumentParser(description='Attackbox setup')
+parser = argparse.ArgumentParser(description='AttackBox setup')
 
 parser.add_argument('-p', '--public', action='store_true', help='Installs and Configures Public C2 Server')
 parser.add_argument('-a', '--autossh', action='store_true', help='Installs and configures autossh')
