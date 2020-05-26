@@ -8,6 +8,7 @@ def server():
     if not os.geteuid() == 0:
         sys.exit("[!] Must Be Run As Root!")
     else:
+        pwd = subprocess.call("pwd", shell=True)
         #Updating Repositories and Upgrading System
         print("[*] Updating Apt Repositories and Upgrading Packages")
         subprocess.call("apt update && apt upgrade -y", shell=True)
@@ -16,7 +17,9 @@ def server():
         print("[*] Modifying SSH Configuration To Allow for PasswordAuthentication")
         subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak", shell=True)
         #error here, file not moved properly
-        subprocess.call("cp configs/sshd_config /etc/ssh/", shell=True)
+        ssh_config = pwd + "/configs/sshd_config"
+        ssh_config_cp = "cp " + pwd + " /etc/ssh/"
+        subprocess.call(ssh_config_cp, shell=True)
         subprocess.call("service ssh restart", shell=True)
         #Installing Webserver and Setting Up HTTPS
         print("\n")
@@ -41,8 +44,9 @@ def server():
         print("\n")
         print("Setting Dummy Homepage for Webserver")
         subprocess.call("rm /var/www/html/index.html", shell=True)
-                #error here, file not moved properly
-        subprocess.call("cp scripts/index.html /var/www/html", shell=True)
+        index_location = pwd + "/scripts/index.html"
+        index_location_cmd = "cp " + index_location + " /var/www/html"
+        subprocess.call(index_location_cmd, shell=True)
         print("\n")
         #Setting Root Password and SSH keys
         print("[*] Setting Up root Password, SSH Directory and SSH Keys")
