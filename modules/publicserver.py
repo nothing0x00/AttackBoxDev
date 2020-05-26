@@ -15,7 +15,8 @@ def server():
         #modifying SSH Connection Details
         print("[*] Modifying SSH Configuration To Allow for PasswordAuthentication")
         subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak", shell=True)
-        subprocess.call("mv configs/sshd_config /etc/ssh/", shell=True)
+        #error here, file not moved properly
+        subprocess.call("cp configs/sshd_config /etc/ssh/", shell=True)
         subprocess.call("service ssh restart", shell=True)
         #Installing Webserver and Setting Up HTTPS
         print("\n")
@@ -40,7 +41,8 @@ def server():
         print("\n")
         print("Setting Dummy Homepage for Webserver")
         subprocess.call("rm /var/www/html/index.html", shell=True)
-        subprocess.call("mv scripts/index.html /var/www/html", shell=True)
+                #error here, file not moved properly
+        subprocess.call("cp scripts/index.html /var/www/html", shell=True)
         print("\n")
         #Setting Root Password and SSH keys
         print("[*] Setting Up root Password, SSH Directory and SSH Keys")
@@ -54,7 +56,7 @@ def server():
         print("[*] Restoring SSH Configuration")
         confirm = input("Run Setup Script for Onsite Device and Press ENTER When SSH Keys Have Been Uploaded to Public Server From Onsite Machine")
         subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak2", shell=True)
-        subprocess.call("mv /etc/ssh/sshd_config.bak /etc/ssh/sshd_config", shell=True)
+        subprocess.call("cp /etc/ssh/sshd_config.bak /etc/ssh/sshd_config", shell=True)
         subprocess.call("service ssh restart", shell=True)
         print("\n")
         print("[*] Complete!")
