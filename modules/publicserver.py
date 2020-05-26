@@ -1,5 +1,6 @@
 import subprocess
 import os,sys
+import shutil
 
 def server():
     print("\n")
@@ -8,7 +9,7 @@ def server():
     if not os.geteuid() == 0:
         sys.exit("[!] Must Be Run As Root!")
     else:
-        pwd = subprocess.call("pwd", shell=True)
+        pwd = str(subprocess.call("pwd", shell=True))
         #Updating Repositories and Upgrading System
         print("[*] Updating Apt Repositories and Upgrading Packages")
         subprocess.call("apt update && apt upgrade -y", shell=True)
@@ -17,10 +18,11 @@ def server():
         print("[*] Modifying SSH Configuration To Allow for PasswordAuthentication")
         subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak", shell=True)
         #error here, file not moved properly
-        ssh_config = pwd + "/configs/sshd_config"
-        ssh_config_cp = "cp " + pwd + " /etc/ssh/"
-        subprocess.call(ssh_config_cp, shell=True)
-        subprocess.call("service ssh restart", shell=True)
+        #ssh_config = pwd + "/configs/sshd_config"
+        #ssh_config_cp = "cp " + pwd + " /etc/ssh/"
+        #subprocess.call(ssh_config_cp, shell=True)
+        #subprocess.call("service ssh restart", shell=True)
+        shutil.copyfile('configs/sshd_config', '/etc/ssh/sshd_config')
         #Installing Webserver and Setting Up HTTPS
         print("\n")
         print("[*] Installing Apache and Certbot and Setting Up LetsEncrypt Certificates")
@@ -44,9 +46,10 @@ def server():
         print("\n")
         print("Setting Dummy Homepage for Webserver")
         subprocess.call("rm /var/www/html/index.html", shell=True)
-        index_location = pwd + "/scripts/index.html"
-        index_location_cmd = "cp " + index_location + " /var/www/html"
-        subprocess.call(index_location_cmd, shell=True)
+        #index_location = pwd + "/scripts/index.html"
+        #index_location_cmd = "cp " + index_location + " /var/www/html"
+        #subprocess.call(index_location_cmd, shell=True)
+        shutil.copyfile('scripts/index.html', '/var/www/html/index.html')
         print("\n")
         #Setting Root Password and SSH keys
         print("[*] Setting Up root Password, SSH Directory and SSH Keys")
@@ -60,7 +63,7 @@ def server():
         print("[*] Restoring SSH Configuration")
         confirm = input("Run Setup Script for Onsite Device and Press ENTER When SSH Keys Have Been Uploaded to Public Server From Onsite Machine")
         subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak2", shell=True)
-        subprocess.call("cp /etc/ssh/sshd_config.bak /etc/ssh/sshd_config", shell=True)
+        shutil.copyfile("/etc/ssh/sshd_config.bak", "/etc/ssh/sshd_config")
         subprocess.call("service ssh restart", shell=True)
         print("\n")
         print("[*] Complete!")
