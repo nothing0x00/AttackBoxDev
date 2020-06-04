@@ -7,3 +7,8 @@ This version will involve the following improvements:
 - Script is fully modular, allowing for modules to be easily written and modified
 - Addition of Raspberry Pi based physical pentesting dropbox installation and configuration
 - Development of process to poll a webserver for commands from onsite machines
+
+
+#### To Do
+- Allow for interactive setting of URL for httpc2 script
+- Update README
