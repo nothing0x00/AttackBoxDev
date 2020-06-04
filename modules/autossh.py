@@ -30,7 +30,8 @@ def autossh():
 
     #ssh-copy-id
     print("[*] Copying SSH Key to Remote Machine")
-    copy_id = "ssh-copy-id -i /root/.ssh/id_rsa root@" + server
+    copy_id = "echo -n \"restrict,port-forwarding,permitopen=\\\"localhost:22\\\",permitlisten=\\\"" + rev_port + "\\\" \""
+    copy_id += " | cat - /root/.ssh/id_rsa.pub | ssh root@" + server + " tee -a /home/autossh/.ssh/authorized_keys"
     subprocess.call(copy_id, shell=True)
     print("\n")
 
@@ -40,7 +41,7 @@ def autossh():
     if os.path.isfile('/root/reverse.sh'):
         print("[*] Bash Script Already Present")
     else:
-        rev_ssh = '/usr/bin/autossh -f -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R ' + rev_port + ':localhost:22 root@' + server
+        rev_ssh = '/usr/bin/autossh -f -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R ' + rev_port + ':localhost:22 autossh@' + server
         f = open("/root/reverse.sh", "a")
         f.write("#!/bin/bash")
         f.write("\n\n")
@@ -60,14 +61,6 @@ def autossh():
         f2.close()
         subprocess.call("crontab /root/cronjob", shell=True)
 
-    #test connection
-    print("\n")
-    cmd = "autossh -i /root/.ssh/id_rsa -R " + rev_port + ":localhost:22 root@" + server
-    print("[*] Launching Connection Attempt.")
-    print("[!] After Connection Initiates, Type netstat -lntp To Check That Port Forwarding Has Been Successful")
-    print("[!] Type exit After Port Forward Check To Return to This Script.")
-    print("\n")
-    subprocess.call(cmd, shell=True)
     print("\n")
     print("\n")
     print("[*] Autossh Installation Complete")
