@@ -19,6 +19,8 @@ def autossh():
     else:
         print("[*] Generating SSH Keys for root")
         subprocess.call("ssh-keygen", shell=True)
+        subprocess.call("chmod 600 /root/.ssh/id_rsa")
+        subprocess.call("chmod 644 /root/.ssh/id_rsa.pub")
     print("\n")
 
     #Set up reverse SSH with autossh
