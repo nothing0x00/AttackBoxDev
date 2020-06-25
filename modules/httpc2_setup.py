@@ -23,4 +23,4 @@ def httpc2():
     f2 = open("/root/cronjob", "a")
     f2.write("@reboot /usr/bin/python3 /bin/httpc2/httpc2.py\n\n")
     f2.close()
-    subprocess.call("crontab /root/httpc2", shell=True)
+    #subprocess.call("crontab /root/httpc2", shell=True)
