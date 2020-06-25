@@ -57,3 +57,14 @@ if args.rpi:
     internal.internal()
     autossh.autossh()
     httpc2_setup.httpc2()
+
+cron_install = input("Is this running on a client machine? ")
+if cron_install == "y" or "Y":
+    print("\n[*]Installing cronjobs\n")
+    subprocess.call("crontab /root/cronjob", shell=True)
+else:
+    pass
+
+print("\n")
+print("[*] Installation Complete!")
+print("\n")

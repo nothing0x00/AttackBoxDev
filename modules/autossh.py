@@ -59,7 +59,7 @@ def autossh():
     f2 = open("/root/cronjob", "a")
     f2.write("@reboot /bin/bash /root/reverse.sh\n\n")
     f2.close()
-    subprocess.call("crontab /root/cronjob", shell=True)
+    #subprocess.call("crontab /root/cronjob", shell=True)
 
     print("\n")
     print("\n")
