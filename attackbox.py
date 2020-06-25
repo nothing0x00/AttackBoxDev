@@ -23,10 +23,6 @@ Internal Pentest and Remote Wireless Testing Dropbox Installation Script
 if not os.geteuid() == 0:
     sys.exit("[!] Must Be Run As Root!")
 
-print("Before Continuing Make Sure That DNS is Set for Remote Server and SSH Access Has Been Established (Needed for Transferring SSH Keys)")
-input("Press ENTER to Continue")
-print("\n")
-
 #argument structure
 
 parser = argparse.ArgumentParser(description='AttackBox setup')
@@ -40,6 +36,10 @@ parser.add_argument('-c', '--c2', action='store_true', help="Installs and Config
 parser.add_argument('-r', '--rpi', action='store_true', help="Installs and Configures Raspberry Pi Physical Pentest Dropbox")
 
 args=parser.parse_args()
+
+print("Before Continuing Make Sure That DNS is Set for Remote Server and SSH Access Has Been Established (Needed for Transferring SSH Keys)")
+input("Press ENTER to Continue")
+print("\n")
 
 if args.public:
     public.server()
