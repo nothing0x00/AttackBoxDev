@@ -58,6 +58,15 @@ def server():
         subprocess.call("mkdir /root/.ssh", shell=True)
         subprocess.call("touch /root/.ssh/authorized_keys", shell=True)
         subprocess.call("ssh-keygen", shell=True)
+        
+        print("\n[*] Creating autossh user, SSH Directory and SSH Keys")
+        subprocess.call("""useradd autossh -m -s /usr/sbin/nologin && 
+        usermod -p '*' autossh && 
+        mkdir /home/autossh/.ssh && 
+        touch /home/autossh/.ssh/authorized_keys && 
+        chown -R autossh:autossh /home/autossh/.ssh && 
+        chmod 600 /home/autossh/.ssh/authorized_keys""", shell=True)
+        
         #restoring SSH configuration
         print("\n")
         print("[*] Restoring SSH Configuration")
@@ -66,12 +75,5 @@ def server():
         shutil.copyfile("/etc/ssh/sshd_config.bak", "/etc/ssh/sshd_config")
         subprocess.call("service ssh restart", shell=True)
         print("\n")
-        print("[*] Creating autossh user, SSH Directory and SSH Keys")
-        subprocess.call("""useradd autossh -m -s /usr/sbin/nologin && 
-        usermod -p '*' autossh && 
-        mkdir /home/autossh/.ssh && 
-        touch /home/autossh/.ssh/authorized_keys && 
-        chown -R autossh:autossh /home/autossh/.ssh && 
-        chmod 600 /home/autossh/.ssh/authorized_keys""", shell=True)
         print("[*] Complete!")
         print("\n")
