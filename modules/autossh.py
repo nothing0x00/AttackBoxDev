@@ -18,9 +18,9 @@ def autossh():
         print("[*] SSH Keys Already Exist. ")
     else:
         print("[*] Generating SSH Keys for root")
-        subprocess.call("ssh-keygen", shell=True)
-        subprocess.call("chmod 600 /root/.ssh/id_rsa")
-        subprocess.call("chmod 644 /root/.ssh/id_rsa.pub")
+        subprocess.call("""ssh-keygen &&
+        chmod 600 /root/.ssh/id_rsa &&
+        chmod 644 /root/.ssh/id_rsa.pub""", shell=True)
     print("\n")
 
     #Set up reverse SSH with autossh
@@ -54,14 +54,15 @@ def autossh():
     #Setting cronjob
     print("[*] Setting Connection to Launch on Boot Using Cron...")
     print("\n")
-    #if os.path.isfile("/root/cronjob"):
-    #    print("[*] Cronjob File Present")
-    #    print("Check crontab -l To See If Script Set To Run On @reboot")
-    #else:
-    f2 = open("/root/cronjob", "a")
-    f2.write("@reboot /bin/bash /root/reverse.sh\n\n")
-    f2.close()
-    #subprocess.call("crontab /root/cronjob", shell=True)
+    if os.path.isfile('/root/cronjob'):
+        if subprocess.call("grep reverse /root/cronjob", shell=True) != 0:
+            f2 = open("/root/cronjob", "a")
+            f2.write("@reboot /bin/bash /root/reverse.sh\n\n")
+            f2.close()
+    else:
+        f2 = open("/root/cronjob", "a")
+        f2.write("@reboot /bin/bash /root/reverse.sh\n\n")
+        f2.close()
 
     print("\n")
     print("\n")

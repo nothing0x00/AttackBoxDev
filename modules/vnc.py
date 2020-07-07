@@ -48,4 +48,6 @@ def vnc():
         subprocess.call("systemctl daemon-reload", shell=True)
         subprocess.call("systemctl enable vncserver@1.service", shell=True)
         subprocess.call("systemctl start vncserver@1.service", shell=True)
-
+    print("\n\n[*] To connect via VNC run the following from your client:")
+    print("ssh -N -L 5900:localhost:5901 -o ProxyCommand=""ssh -W %h:%p username@public.jump.server"" kali@localhost -p 10999")
+    print("vncviewer localhost\n\n")

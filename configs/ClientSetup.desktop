@@ -1,0 +1,9 @@
+[Desktop Entry]
+Comment=
+Terminal=true
+Name=Callback Server Configuration
+Exec=pkexec /usr/bin/python3 /root/ClientSetup.py
+Type=Application
+Icon=
+Path=
+StartupNotify=false
