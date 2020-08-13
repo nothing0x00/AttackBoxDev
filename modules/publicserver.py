@@ -12,7 +12,7 @@ def server():
         pwd = str(subprocess.call("pwd", shell=True))
         #Updating Repositories and Upgrading System
         print("[*] Updating Apt Repositories and Upgrading Packages")
-        subprocess.call("apt update && apt upgrade -y", shell=True)
+        subprocess.call("apt update", shell=True)
         print("\n")
         #modifying SSH Connection Details
         print("[*] Modifying SSH Configuration To Allow for PasswordAuthentication")
@@ -58,15 +58,15 @@ def server():
         subprocess.call("mkdir /root/.ssh", shell=True)
         subprocess.call("touch /root/.ssh/authorized_keys", shell=True)
         subprocess.call("ssh-keygen", shell=True)
-        
+
         print("\n[*] Creating autossh user, SSH Directory and SSH Keys")
-        subprocess.call("""useradd autossh -m -s /usr/sbin/nologin && 
-        usermod -p '*' autossh && 
-        mkdir /home/autossh/.ssh && 
-        touch /home/autossh/.ssh/authorized_keys && 
-        chown -R autossh:autossh /home/autossh/.ssh && 
+        subprocess.call("""useradd autossh -m -s /usr/sbin/nologin &&
+        usermod -p '*' autossh &&
+        mkdir /home/autossh/.ssh &&
+        touch /home/autossh/.ssh/authorized_keys &&
+        chown -R autossh:autossh /home/autossh/.ssh &&
         chmod 600 /home/autossh/.ssh/authorized_keys""", shell=True)
-        
+
         #restoring SSH configuration
         print("\n")
         print("[*] Restoring SSH Configuration")
