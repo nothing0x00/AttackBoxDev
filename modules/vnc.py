@@ -6,7 +6,7 @@ def vnc():
     print("[*] Installing VNC Dependencies and Packages!")
     print("\n")
     subprocess.call("apt update", shell=True)
-    subprocess.call("apt upgrade -y", shell=True)
+    #subprocess.call("apt upgrade -y", shell=True)
     subprocess.call("apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils tigervnc-standalone-server tigervnc-common -y", shell=True)
     print("\n")
     print("\n")
@@ -15,7 +15,7 @@ def vnc():
     print("[*] Checking for existing xstartup configuration...")
     if user == 'root':
         userpath = '/root/.vnc/'
-    else: 
+    else:
         userpath = '/home/'+user+'/.vnc/'
     if os.path.isfile(userpath+'xstartup'):
         print("[*] Xstartup Already Exists. ")

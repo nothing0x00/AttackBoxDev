@@ -14,6 +14,10 @@ def clientcron():
     print("\n[*]Installing cronjobs\n")
     subprocess.call("crontab /root/cronjob", shell=True)
 
+def update():
+    print("Updating packages\n")
+    subprocess.call("apt upgrade -y", shell=True)
+
 print('''
 
    ___         ________                 ____                 _ __
@@ -55,6 +59,7 @@ custom_parser.add_argument('-w', '--wireless', action='store_true', help='Instal
 custom_parser.add_argument('-v', '--vnc', action='store_true', help='Installs and configures VNC')
 custom_parser.add_argument('-c', '--c2', action='store_true', help="Installs and configures HTTP Command Polling")
 custom_parser.add_argument('-l', '--client', action='store_true', help="Installs client-side post-deployment configuration script")
+custom_parser.add_argument('-u', '--update', action='store_true', help="Installs updates")
 custom_parser.set_defaults(mode='custom')
 args=parser.parse_args()
 
@@ -66,6 +71,7 @@ if args.mode == 'public':
     public.server()
 elif args.mode == 'client':
     if args.all:
+        update()
         internal.internal()
         wireless.wireless()
         autossh.autossh()
@@ -107,6 +113,8 @@ elif args.mode == 'custom':
         httpc2_setup.httpc2()
     if args.client:
         client.clientconfig()
+    if args.update:
+        update()
 
 print("\n")
 print("[*] Installation Complete!")
