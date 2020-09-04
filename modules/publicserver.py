@@ -70,7 +70,7 @@ def server():
         print("[*] Restoring SSH Configuration")
         confirm = input("Run Setup Script for Onsite Device and Press ENTER When SSH Keys Have Been Uploaded to Public Server From Onsite Machine")
         subprocess.call("""mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak2 && 
-                cp /etc/ssh/shd_config.bak /etc/ssh/sshd_config &&
+                cp /etc/ssh/sshd_config.bak /etc/ssh/sshd_config &&
                 service ssh restart""", shell=True)
         #shutil.copyfile("/etc/ssh/sshd_config.bak", "/etc/ssh/sshd_config")
         #subprocess.call("service ssh restart", shell=True)
