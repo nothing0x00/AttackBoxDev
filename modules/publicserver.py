@@ -30,7 +30,7 @@ def server():
         subprocess.call("add-apt-repository universe", shell=True)
         subprocess.call("add-apt-repository ppa:certbot/certbot", shell=True)
         subprocess.call("apt update", shell=True)
-        subprocess.call("apt install apache2 software-properties-common certbot python-certbot-apache -y", shell=True)
+        subprocess.call("apt install apache2 software-properties-common certbot python3-certbot-apache -y", shell=True)
         print("\n")
         dns = input("Is DNS Set Up For This IP (Y or N)?: ")
         if dns == "y" or "Y":
@@ -70,7 +70,7 @@ def server():
         print("[*] Restoring SSH Configuration")
         confirm = input("Run Setup Script for Onsite Device and Press ENTER When SSH Keys Have Been Uploaded to Public Server From Onsite Machine")
         subprocess.call("""mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak2 && 
-                cp /etc/sshd_config.bak /etc/ssh/sshd_config &&
+                cp /etc/ssh/shd_config.bak /etc/ssh/sshd_config &&
                 service ssh restart""", shell=True)
         #shutil.copyfile("/etc/ssh/sshd_config.bak", "/etc/ssh/sshd_config")
         #subprocess.call("service ssh restart", shell=True)
