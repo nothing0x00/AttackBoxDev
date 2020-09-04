@@ -2,10 +2,10 @@
 
 lsblk
 
-echo "Enter USB Device (/dev/sdb):"
+echo "Enter USB Device (/dev/sda):"
 read USB_DEVICE
 
-echo "Enter Encrypted Partition (/dev/sda5):"
+echo "Enter Encrypted Partition (/dev/nvme0n1p3):"
 read LUKS_DEVICE
 
 if [ ! -b $USB_DEVICE ]; then
@@ -24,8 +24,8 @@ fi
 echo ""
 echo "Preparing USB File System"
 echo ""
-sfdisk --delete ${USB_DEVICE}
-parted -a optimal ${USB_DEVICE} mkpart primary ext4 0% 100%
+#sfdisk --delete ${USB_DEVICE}
+parted -a optimal ${USB_DEVICE} mklabel msdos mkpart primary ext4 0% 100%
 mkfs.ext4 -L KEY ${USB_DEVICE}1
 
 
