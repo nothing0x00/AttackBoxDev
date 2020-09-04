@@ -25,7 +25,8 @@ echo ""
 echo "Preparing USB File System"
 echo ""
 #sfdisk --delete ${USB_DEVICE}
-parted -a optimal ${USB_DEVICE} mklabel msdos mkpart primary ext4 0% 100%
+parted ${USB_DEVICE} mklabel msdos
+parted -a optimal ${USB_DEVICE} mkpart primary ext4 0% 100%
 mkfs.ext4 -L KEY ${USB_DEVICE}1
 
 
