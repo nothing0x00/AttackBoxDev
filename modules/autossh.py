@@ -6,7 +6,6 @@ def autossh():
     print("[*] Installing Autossh Dependencies and Packages!")
     print("\n")
     subprocess.call("apt update", shell=True)
-    #subprocess.call("apt upgrade -y", shell=True)
     subprocess.call("apt install autossh python3-pip ssh -y", shell=True)
     subprocess.call("systemctl enable ssh", shell=True)
     subprocess.call("systemctl start ssh", shell=True)
