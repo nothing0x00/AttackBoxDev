@@ -42,7 +42,7 @@ def autossh():
     if os.path.isfile('/root/reverse.sh'):
         print("[*] Bash Script Already Present")
     else:
-        rev_ssh = '/usr/bin/autossh -f -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R ' + rev_port + ':localhost:22 autossh@' + server
+        rev_ssh = '/usr/bin/autossh -M 0 -f -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R ' + rev_port + ':localhost:22 autossh@' + server
         f = open("/root/reverse.sh", "a")
         f.write("#!/bin/bash")
         f.write("\n\n")
