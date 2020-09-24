@@ -14,15 +14,13 @@ def server():
         print("[*] Updating Apt Repositories and Upgrading Packages")
         subprocess.call("apt update", shell=True)
         print("\n")
+        
         #modifying SSH Connection Details
         print("[*] Modifying SSH Configuration To Allow for PasswordAuthentication")
-        subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak", shell=True)
-        #error here, file not moved properly
-        #ssh_config = pwd + "/configs/sshd_config"
-        #ssh_config_cp = "cp " + pwd + " /etc/ssh/"
-        #subprocess.call(ssh_config_cp, shell=True)
-        #subprocess.call("service ssh restart", shell=True)
-        shutil.copyfile('configs/sshd_config', '/etc/ssh/sshd_config')
+        subprocess.call("""mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak &&
+                cp configs/sshd_config /etc/ssh/sshd_config &&
+                service ssh restart""", shell=True)
+        
         #Installing Webserver and Setting Up HTTPS
         print("\n")
         print("[*] Installing Apache and Certbot and Setting Up LetsEncrypt Certificates")
@@ -31,7 +29,7 @@ def server():
         subprocess.call("add-apt-repository universe", shell=True)
         subprocess.call("add-apt-repository ppa:certbot/certbot", shell=True)
         subprocess.call("apt update", shell=True)
-        subprocess.call("apt install apache2 software-properties-common certbot python-certbot-apache -y", shell=True)
+        subprocess.call("apt install apache2 software-properties-common certbot python3-certbot-apache -y", shell=True)
         print("\n")
         dns = input("Is DNS Set Up For This IP (Y or N)?: ")
         if dns == "y" or "Y":
@@ -45,21 +43,17 @@ def server():
         print("Edit /var/www/html/commands.txt To Send Commands to the Onsite Device")
         print("\n")
         print("Setting Dummy Homepage for Webserver")
-        subprocess.call("rm /var/www/html/index.html", shell=True)
-        #index_location = pwd + "/scripts/index.html"
-        #index_location_cmd = "cp " + index_location + " /var/www/html"
-        #subprocess.call(index_location_cmd, shell=True)
-        shutil.copyfile('scripts/index.html', '/var/www/html/index.html')
+        subprocess.call("""rm /var/www/html/index.html &&
+                cp scripts/index.html /var/www/html/index.html""", shell=True)
         print("\n")
-        #Setting Root Password and SSH keys
-        print("[*] Setting Up root Password, SSH Directory and SSH Keys")
+        
+        #Setting Root Password
+        print("[*] Setting Up root Password")
         print("\n")
         subprocess.call("passwd", shell=True)
-        subprocess.call("mkdir /root/.ssh", shell=True)
-        subprocess.call("touch /root/.ssh/authorized_keys", shell=True)
-        subprocess.call("ssh-keygen", shell=True)
-
-        print("\n[*] Creating autossh user, SSH Directory and SSH Keys")
+        
+        #Setting up autossh user and SSH folder and authorized_keys file
+        print("\n[*] Creating autossh user, SSH Directory")
         subprocess.call("""useradd autossh -m -s /usr/sbin/nologin &&
         usermod -p '*' autossh &&
         mkdir /home/autossh/.ssh &&
@@ -71,9 +65,10 @@ def server():
         print("\n")
         print("[*] Restoring SSH Configuration")
         confirm = input("Run Setup Script for Onsite Device and Press ENTER When SSH Keys Have Been Uploaded to Public Server From Onsite Machine")
-        subprocess.call("mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak2", shell=True)
-        shutil.copyfile("/etc/ssh/sshd_config.bak", "/etc/ssh/sshd_config")
-        subprocess.call("service ssh restart", shell=True)
+        subprocess.call("""mv /etc/ssh/sshd_config /etc/ssh/sshd_config.bak2 && 
+                cp /etc/ssh/sshd_config.bak /etc/ssh/sshd_config &&
+                service ssh restart""", shell=True)
+        
         print("\n")
         print("[*] Complete!")
         print("\n")

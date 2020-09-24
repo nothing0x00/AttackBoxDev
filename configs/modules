@@ -1,0 +1,28 @@
+# List of modules that you want to include in your initramfs.
+# They will be loaded at boot time in the order below.
+#
+# Syntax:  module_name [args ...]
+#
+# You must run update-initramfs(8) to effect this change.
+#
+# Examples:
+#
+# raid1
+# sd_mod
+usbcore
+sd_mod
+ehci_hcd
+uhci_hcd
+ohci_hcd
+usb_storage
+ext4
+ext3
+ext2
+vfat
+btrfs
+reiserfs
+xfs
+jfs
+ntfs
+iso9660
+udf

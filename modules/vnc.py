@@ -6,11 +6,11 @@ def vnc():
     print("[*] Installing VNC Dependencies and Packages!")
     print("\n")
     subprocess.call("apt update", shell=True)
-    #subprocess.call("apt upgrade -y", shell=True)
     subprocess.call("apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils tigervnc-standalone-server tigervnc-common -y", shell=True)
     print("\n")
     print("\n")
     user = input("Username to run VNC as: ")
+    
     #Checking for SSH keys and generating them if they do not exist
     print("[*] Checking for existing xstartup configuration...")
     if user == 'root':
@@ -27,6 +27,7 @@ def vnc():
             subprocess.call("mkdir " + userpath, shell=True)
             subprocess.call("cp configs/xstartup " + userpath, shell=True)
         subprocess.call("chmod u+x " + userpath + "xstartup", shell=True)
+    
     #set default vnc password to kali
     if os.path.isfile(userpath+'passwd'):
         print("[*] VNC passwd already exists.")
