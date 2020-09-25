@@ -116,7 +116,8 @@ The custom arguments allows for the user to install specific modules, which is u
 
 In the client menu the options are the following:
 
-```usage: attackbox.py client [-h] [--all | --rpi | --vm | --nuc]
+```
+usage: attackbox.py client [-h] [--all | --rpi | --vm | --nuc]
 
 optional arguments:
   -h, --help  show this help message and exit
@@ -128,7 +129,8 @@ optional arguments:
 
   The custom menu provides the following options:
 
-  ```usage: attackbox.py custom [-h] [-a] [-i] [-w] [-v] [-c] [-l] [-u]
+  ```
+  usage: attackbox.py custom [-h] [-a] [-i] [-w] [-v] [-c] [-l] [-u]
 
 optional arguments:
   -h, --help      show this help message and exit
