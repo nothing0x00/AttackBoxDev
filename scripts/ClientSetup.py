@@ -21,7 +21,7 @@ def ClientSetup():
             if port1.isnumeric():
                 if port1 == port2:
                     if int(port1) > 1024 and int(port1) <= 65535:
-                        rev_ssh = '/usr/bin/autossh -f -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R ' + port1 + ':localhost:22 autossh@' + server1
+                        rev_ssh = '/usr/bin/autossh -M 0 -f -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R ' + port1 + ':localhost:22 autossh@' + server1
                         f = open("/root/reverse.sh", "w")
                         f.write("#!/bin/bash")
                         f.write("\n\n")
