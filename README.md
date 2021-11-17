@@ -1,7 +1,7 @@
-## RedTeam AttackBox
+## AttackBox v1
 
 ### Summary
-The RedTeam AttackBox grew out of a series of problems which were presented by the COVID-19 pandemic, specifically, the inability to travel to client sites to perform internal network pentests and wireless penetration testing. To remedy this issue we tried other remote pentesting frameworks (and have sourced ideas, heavily, from them), but, decided that the modifications necessary to get them to fit our needs were not the most efficient use of our time. As a result, we built the AttackBox, from the ground up, as a cross-platform remote penetration testing framework, which has the following features:
+The AttackBox grew out of a series of problems which were presented by the COVID-19 pandemic, specifically, the inability to travel to client sites to perform internal network pentests and wireless penetration testing. To remedy this issue we tried other remote pentesting frameworks (and have sourced ideas, heavily, from them), but, decided that the modifications necessary to get them to fit our needs were not the most efficient use of our time. As a result, we built the AttackBox, from the ground up, as a cross-platform remote penetration testing framework, which has the following features:
 
 
 - The AttackBox uses reverse SSH for connections to a server, eliminating the need for clients to forward ports.
@@ -179,7 +179,7 @@ When the machine gets to the client site the client will need to complete the fo
 
 * Remove AttackBox, wireless dongles, wireless dongle bases, power supply and USB extension cables from the box
 
-* If RedTeam has been engaged for wireless testing:
+* If one has been engaged for wireless testing:
 
   * Plug the USB wireless dongles onto the wireless dongle bases
 
@@ -208,7 +208,7 @@ Following implementation of the USB unlocking process the instructions will be s
 
 * Remove AttackBox, wireless dongles, wireless dongle bases, power supply, USB stick and USB extension cables from the box
 
-* If RedTeam has been engaged for wireless testing:
+* If one has been engaged for wireless testing:
 
   * Plug the USB wireless dongles onto the wireless dongle bases
 
